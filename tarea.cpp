@@ -2,7 +2,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
+//Particion:    int arr 
+//              int l
+//              int r
+//              Return:
 int particion(int arr[], int l, int r)
 {
 	int x = arr[r], i = l;
@@ -17,25 +20,26 @@ int particion(int arr[], int l, int r)
 }
 
 
-
+//QuickSelect:  int arr
+//              int l
+//              int r
+//              int k
+//              Return: 
 int quickselect(int arr[], int l, int r, int k)
 {
 
 	if (k > 0 && k <= r - l + 1) {
 
-		int index = particion(arr, l, r);
+		int pos = particion(arr, l, r);
 
-		if (index - l == k - 1)
-			return arr[index];
+		if (pos - l == k - 1) return arr[pos];
 
-		
-		if (index - l > k - 1)
-			return quickselect(arr, l, index - 1, k);
+		if (pos - l > k - 1) return quickselect(arr, l, pos - 1, k);
 
-		return quickselect(arr, index + 1, r, k - index + l - 1);
+		return quickselect(arr, pos + 1, r, k - pos + l - 1);
 	}
 
-	return INT_MAX;
+	return -1;
 }
 
 int main(){
